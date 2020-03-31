@@ -4,7 +4,14 @@ import { Link } from "gatsby"
 import { rhythm, scale } from "../utils/typography"
 import './layout.css'
 
-const Layout = ({ location, title, children }) => {
+interface Props {
+  location: Location
+  title: string
+  children?: any
+}
+
+const Layout = ({ location, title, children }: Props) => {
+  // @ts-ignore
   const rootPath = `${__PATH_PREFIX__}/`
   let header
 
@@ -14,7 +21,7 @@ const Layout = ({ location, title, children }) => {
         style={{
           // ...scale(1.5),
           fontSize: "38px !important",
-          fontWeight: "600",
+          fontWeight: 600,
           textAlign: "center",
           margin: 0,
         }}
@@ -36,7 +43,7 @@ const Layout = ({ location, title, children }) => {
         style={{
           // ...scale(1.5),
           fontSize: "38px !important",
-          fontWeight: "600",
+          fontWeight: 600,
           textAlign: "center",
           margin: 0,
         }}

@@ -1,6 +1,6 @@
 module.exports = {
     siteMetadata: {
-        title: `Suspend Fun: Tech Learnings for Future Self`,
+        title: 'Suspend Fun: Tech Learnings for Future Self',
         customHeaderTitle: {
             title: `Suspend Fun`,
             extra: `Tech Learnings for Future Self`
@@ -91,6 +91,7 @@ module.exports = {
                 pathToConfigModule: `src/utils/typography`,
             },
         },
+        `gatsby-plugin-typescript`,
         // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.dev/offline
         // `gatsby-plugin-offline`,

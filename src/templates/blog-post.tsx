@@ -1,5 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import { DiscussionEmbed } from "disqus-react"
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
@@ -12,23 +13,35 @@ interface Props {
     site: {
       siteMetadata: {
         title: string
+        siteUrl: string
       }
     }
   }
   pageContext: any
-  location: any
 }
 
-const BlogPostTemplate = ({ data, pageContext, location }: Props) => {
+const BlogPostTemplate = ({ data, pageContext }: Props) => {
   const post = data.markdownRemark
-  const siteTitle = data.site.siteMetadata.title
-  const { previous, next } = pageContext
-  const thumbnail = post.frontmatter.thumbnail 
+  const {title, siteUrl} = data.site.siteMetadata
+  const { previous, next, slug } = pageContext
+  const blogTitle = post.frontmatter.title
+  const thumbnail = post.frontmatter.thumbnail
+
+  const location: any = typeof window !== `undefined` && window.location
+
+  const disqusConfig = {
+    shortname: process.env.GATSBY_DISQUS_NAME || "",
+    config: {
+      url: `${siteUrl}${location.pathname || ""}`,
+      identifier: slug,
+      blogTitle,
+    },
+  }
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location} title={title}>
       <SEO
-        title={post.frontmatter.title}
+        title={blogTitle}
         description={post.frontmatter.description || post.excerpt}
         thumbnail={thumbnail}
       />
@@ -41,7 +54,7 @@ const BlogPostTemplate = ({ data, pageContext, location }: Props) => {
               fontWeight: 300,
             }}
           >
-            {post.frontmatter.title}
+            {blogTitle}
           </h1>
           <p
             style={{
@@ -60,6 +73,7 @@ const BlogPostTemplate = ({ data, pageContext, location }: Props) => {
           }}
         />
         <footer />
+        <DiscussionEmbed {...disqusConfig} />
       </article>
 
       <nav>
@@ -99,6 +113,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        siteUrl
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {

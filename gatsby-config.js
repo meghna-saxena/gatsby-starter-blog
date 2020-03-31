@@ -36,13 +36,13 @@ module.exports = {
                     {
                         resolve: `gatsby-remark-twitter-cards`,
                         options: {
-                          title: 'anti/pattern', // website title
-                          separator: '|', // default
-                          background: require.resolve('./content/assets/favicon.png'), // path to 1200x630px file or hex code, defaults to black (#000000)
-                          fontColor: '#228B22', // defaults to white (#ffffff)
-                          titleFontSize: 96, // default
-                          subtitleFontSize: 60, // default
-                          fontStyle: 'monospace', // default
+                          title: 'anti/pattern',
+                          separator: '|', 
+                          background: require.resolve('./content/assets/favicon.png'),
+                          fontColor: '#228B22', 
+                          titleFontSize: 96, 
+                          subtitleFontSize: 60, 
+                          fontStyle: 'monospace', 
                         },
                       },
                     {
